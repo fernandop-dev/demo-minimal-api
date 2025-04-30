@@ -17,7 +17,7 @@
 #endregion Step3: Build the application
 
 #region Step4: Middleware Pipeline Configuration
-
+ app.MapGet("/ejemplo", () => "Este es un nuevo endpoint de ejemplo.");
 #endregion Step4: Middleware Pipeline Configuration
 
 #region Step5: Start the Application
