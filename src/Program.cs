@@ -4,6 +4,7 @@
     
 #region Step2: Service Registration
 #region Step2.1: Add services to the DI container.
+    builder.Services.AddOpenApi();
     
 #endregion Step2.1: Add services to the DI container.
     
@@ -17,7 +18,18 @@
 #endregion Step3: Build the application
 
 #region Step4: Middleware Pipeline Configuration
- app.MapGet("/ejemplo", () => "Este es un nuevo endpoint de ejemplo.");
+  #region Step4.1: Configure the HTTP request pipeline.
+ 
+  if (app.Environment.IsDevelopment())
+  {
+     app.MapOpenApi();
+  }
+
+  app.UseHttpsRedirection();
+ 
+  #endregion Step4.1: Configure the HTTP request pipeline.
+ 
+  app.MapGet("/ejemplo", () => "Este es un nuevo endpoint de ejemplo.");
 #endregion Step4: Middleware Pipeline Configuration
 
 #region Step5: Start the Application
